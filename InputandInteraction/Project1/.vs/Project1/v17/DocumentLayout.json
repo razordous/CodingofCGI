@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Dropbox\\20252026-1 Subject\\BITM3213 - CGI\\006 - NOTES\\Notes Coding\\InputandInteraction\\Project1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5C5EFB4E-78D3-4845-8052-EB023F30594A}|Project1.vcxproj|D:\\Dropbox\\20252026-1 Subject\\BITM3213 - CGI\\006 - NOTES\\Notes Coding\\InputandInteraction\\Project1\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5C5EFB4E-78D3-4845-8052-EB023F30594A}|Project1.vcxproj|solutionrelative:Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Source.cpp",
+              "DocumentMoniker": "D:\\Dropbox\\20252026-1 Subject\\BITM3213 - CGI\\006 - NOTES\\Notes Coding\\InputandInteraction\\Project1\\Source.cpp",
+              "RelativeDocumentMoniker": "Source.cpp",
+              "ToolTip": "D:\\Dropbox\\20252026-1 Subject\\BITM3213 - CGI\\006 - NOTES\\Notes Coding\\InputandInteraction\\Project1\\Source.cpp",
+              "RelativeToolTip": "Source.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-11-14T12:30:29.141Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
