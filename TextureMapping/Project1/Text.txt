@@ -1,0 +1,196 @@
+/////////////////////////////////////////////
+///Basic Texture 17 Nov 2025 v1.0
+/////////////////////////////////////////////
+
+// chapter5_glut_only.cpp
+// GLUT-only version (Beginner Friendly)
+// Projection + Viewing + Texture Mapping + Mipmapping via GLU
+// Compile (Windows MinGW):
+// g++ chapter5_glut_only.cpp -lfreeglut -lopengl32 -lglu32 -o chapter5
+
+#include <windows.h> // buang kalau Linux/Mac
+#include <GL/glut.h>
+#include <cstdio>
+
+// === stb_image ===
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
+GLuint gTexture = 0;
+float  gAngle = 0.0f;
+
+// ----------------------------------------------------------
+// LoadTexture using GLU mipmaps (no GLEW needed)
+// ----------------------------------------------------------
+GLuint LoadTextureJPEG(const char* filename)
+{
+    int width, height, channels;
+    stbi_set_flip_vertically_on_load(1);
+
+    unsigned char* data = stbi_load(filename, &width, &height, &channels, 0);
+    if (!data)
+    {
+        printf("Failed to load %s\n", filename);
+        return 0;
+    }
+
+    GLenum format = GL_RGB;
+    if (channels == 1)      format = GL_RED;
+    else if (channels == 3) format = GL_RGB;
+    else if (channels == 4) format = GL_RGBA;
+
+    GLuint texID;
+    glGenTextures(1, &texID);
+    glBindTexture(GL_TEXTURE_2D, texID);
+
+    // --- Mipmaps from GLU (Beginner safe) ---
+    gluBuild2DMipmaps(GL_TEXTURE_2D, format,
+        width, height,
+        format, GL_UNSIGNED_BYTE, data);
+
+    // Texture parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+        GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+        GL_LINEAR);
+
+    stbi_image_free(data);
+    return texID;
+}
+
+// ----------------------------------------------------------
+// Init OpenGL
+// ----------------------------------------------------------
+void InitGL()
+{
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_TEXTURE_2D);
+
+    glClearColor(0.1f, 0.1f, 0.15f, 1.0f);
+
+    gTexture = LoadTextureJPEG("mytexture.jpg");
+    if (!gTexture)
+        printf("Texture not loaded!\n");
+}
+
+// ----------------------------------------------------------
+void Reshape(int w, int h)
+{
+    if (h == 0) h = 1;
+    float aspect = (float)w / (float)h;
+
+    glViewport(0, 0, w, h);
+
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(60.0, aspect, 1.0, 100.0);
+
+    glMatrixMode(GL_MODELVIEW);
+}
+
+// ----------------------------------------------------------
+// Draw Cube with Texture
+// ----------------------------------------------------------
+void DrawTexturedCube(float s)
+{
+    float h = s * 0.5f;
+    glBindTexture(GL_TEXTURE_2D, gTexture);
+
+    glBegin(GL_QUADS);
+
+    // FRONT
+    glTexCoord2f(0, 0); glVertex3f(-h, -h, h);
+    glTexCoord2f(1, 0); glVertex3f(h, -h, h);
+    glTexCoord2f(1, 1); glVertex3f(h, h, h);
+    glTexCoord2f(0, 1); glVertex3f(-h, h, h);
+
+    // BACK
+    glTexCoord2f(1, 0); glVertex3f(-h, -h, -h);
+    glTexCoord2f(1, 1); glVertex3f(-h, h, -h);
+    glTexCoord2f(0, 1); glVertex3f(h, h, -h);
+    glTexCoord2f(0, 0); glVertex3f(h, -h, -h);
+
+    // LEFT
+    glTexCoord2f(0, 0); glVertex3f(-h, -h, -h);
+    glTexCoord2f(1, 0); glVertex3f(-h, -h, h);
+    glTexCoord2f(1, 1); glVertex3f(-h, h, h);
+    glTexCoord2f(0, 1); glVertex3f(-h, h, -h);
+
+    // RIGHT
+    glTexCoord2f(0, 0); glVertex3f(h, -h, -h);
+    glTexCoord2f(1, 0); glVertex3f(h, -h, h);
+    glTexCoord2f(1, 1); glVertex3f(h, h, h);
+    glTexCoord2f(0, 1); glVertex3f(h, h, -h);
+
+    // TOP
+    glTexCoord2f(0, 1); glVertex3f(-h, h, h);
+    glTexCoord2f(0, 0); glVertex3f(h, h, h);
+    glTexCoord2f(1, 0); glVertex3f(h, h, -h);
+    glTexCoord2f(1, 1); glVertex3f(-h, h, -h);
+
+    // BOTTOM
+    glTexCoord2f(1, 1); glVertex3f(-h, -h, h);
+    glTexCoord2f(0, 1); glVertex3f(h, -h, h);
+    glTexCoord2f(0, 0); glVertex3f(h, -h, -h);
+    glTexCoord2f(1, 0); glVertex3f(-h, -h, -h);
+
+    glEnd();
+}
+
+// ----------------------------------------------------------
+void Display()
+{
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
+    // CAMERA - gluLookAt (Viewing)
+    gluLookAt(3, 3, 6,   // eye
+        0, 0, 0,   // center
+        0, 1, 0);  // up
+
+    // Rotate cube
+    glRotatef(gAngle, 0, 1, 0);
+    glRotatef(gAngle * 0.6f, 1, 0, 0);
+
+    DrawTexturedCube(2.0f);
+
+    glutSwapBuffers();
+}
+
+// ----------------------------------------------------------
+void Idle()
+{
+    gAngle += 0.2f;
+    if (gAngle > 360) gAngle -= 360;
+    glutPostRedisplay();
+}
+
+// ----------------------------------------------------------
+void Keyboard(unsigned char key, int x, int y)
+{
+    if (key == 27) exit(0); // ESC
+}
+
+// ----------------------------------------------------------
+int main(int argc, char** argv)
+{
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
+    glutInitWindowSize(800, 600);
+    glutCreateWindow("Chapter 5 Demo (GLUT Only)");
+
+    InitGL();
+
+    glutReshapeFunc(Reshape);
+    glutDisplayFunc(Display);
+    glutIdleFunc(Idle);
+    glutKeyboardFunc(Keyboard);
+
+    glutMainLoop();
+    return 0;
+}

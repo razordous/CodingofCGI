@@ -1,0 +1,33 @@
+﻿  Source.cpp
+Source.obj : error LNK2019: unresolved external symbol __imp_glBegin referenced in function "void __cdecl DrawTexturedCube(float)" (?DrawTexturedCube@@YAXM@Z)
+Source.obj : error LNK2019: unresolved external symbol __imp_glBindTexture referenced in function "void __cdecl DrawTexturedCube(float)" (?DrawTexturedCube@@YAXM@Z)
+Source.obj : error LNK2019: unresolved external symbol __imp_glClear referenced in function "void __cdecl Display(void)" (?Display@@YAXXZ)
+Source.obj : error LNK2019: unresolved external symbol __imp_glClearColor referenced in function "void __cdecl InitGL(void)" (?InitGL@@YAXXZ)
+Source.obj : error LNK2019: unresolved external symbol __imp_glEnable referenced in function "void __cdecl InitGL(void)" (?InitGL@@YAXXZ)
+Source.obj : error LNK2019: unresolved external symbol __imp_glEnd referenced in function "void __cdecl DrawTexturedCube(float)" (?DrawTexturedCube@@YAXM@Z)
+Source.obj : error LNK2019: unresolved external symbol __imp_glGenTextures referenced in function "unsigned int __cdecl LoadTextureJPEG(char const *)" (?LoadTextureJPEG@@YAIPEBD@Z)
+Source.obj : error LNK2019: unresolved external symbol __imp_glLoadIdentity referenced in function "void __cdecl Display(void)" (?Display@@YAXXZ)
+Source.obj : error LNK2019: unresolved external symbol __imp_glMatrixMode referenced in function "void __cdecl Display(void)" (?Display@@YAXXZ)
+Source.obj : error LNK2019: unresolved external symbol __imp_glRotatef referenced in function "void __cdecl Display(void)" (?Display@@YAXXZ)
+Source.obj : error LNK2019: unresolved external symbol __imp_glTexCoord2f referenced in function "void __cdecl DrawTexturedCube(float)" (?DrawTexturedCube@@YAXM@Z)
+Source.obj : error LNK2019: unresolved external symbol __imp_glTexParameteri referenced in function "unsigned int __cdecl LoadTextureJPEG(char const *)" (?LoadTextureJPEG@@YAIPEBD@Z)
+Source.obj : error LNK2019: unresolved external symbol __imp_glVertex3f referenced in function "void __cdecl DrawTexturedCube(float)" (?DrawTexturedCube@@YAXM@Z)
+Source.obj : error LNK2019: unresolved external symbol __imp_glViewport referenced in function "void __cdecl Reshape(int,int)" (?Reshape@@YAXHH@Z)
+Source.obj : error LNK2019: unresolved external symbol gluPerspective referenced in function "void __cdecl Reshape(int,int)" (?Reshape@@YAXHH@Z)
+Source.obj : error LNK2019: unresolved external symbol gluLookAt referenced in function "void __cdecl Display(void)" (?Display@@YAXXZ)
+Source.obj : error LNK2019: unresolved external symbol gluBuild2DMipmaps referenced in function "unsigned int __cdecl LoadTextureJPEG(char const *)" (?LoadTextureJPEG@@YAIPEBD@Z)
+Source.obj : error LNK2019: unresolved external symbol __imp___glutInitWithExit referenced in function glutInit_ATEXIT_HACK
+Source.obj : error LNK2019: unresolved external symbol __imp_glutInitDisplayMode referenced in function main
+Source.obj : error LNK2019: unresolved external symbol __imp_glutInitWindowSize referenced in function main
+Source.obj : error LNK2019: unresolved external symbol __imp_glutMainLoop referenced in function main
+Source.obj : error LNK2019: unresolved external symbol __imp___glutCreateWindowWithExit referenced in function glutCreateWindow_ATEXIT_HACK
+Source.obj : error LNK2019: unresolved external symbol __imp_glutPostRedisplay referenced in function "void __cdecl Idle(void)" (?Idle@@YAXXZ)
+Source.obj : error LNK2019: unresolved external symbol __imp_glutSwapBuffers referenced in function "void __cdecl Display(void)" (?Display@@YAXXZ)
+Source.obj : error LNK2019: unresolved external symbol __imp_glutDisplayFunc referenced in function main
+Source.obj : error LNK2019: unresolved external symbol __imp_glutReshapeFunc referenced in function main
+Source.obj : error LNK2019: unresolved external symbol __imp_glutKeyboardFunc referenced in function main
+Source.obj : error LNK2019: unresolved external symbol __imp_glutIdleFunc referenced in function main
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\lib\x64\opengl32.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\lib\x64\glu32.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\lib\x64\glut32.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\Dropbox\20252026-1 Subject\BITM3213 - CGI\006 - NOTES\Notes Coding\TextureMapping\Project1\x64\Debug\Project1.exe : fatal error LNK1120: 28 unresolved externals
